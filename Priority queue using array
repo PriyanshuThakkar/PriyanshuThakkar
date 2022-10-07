@@ -1,0 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Priyanshu Thakkar
+ */
+class array_pQueue{
+    CustomDataType arr[];
+    int default_size = 10;
+    int size = 0;
+    int end = 0;
+    array_pQueue()
+    {
+        this.arr = new CustomDataType[10];
+    }
+    array_pQueue(int size)
+    {
+        this.arr = new CustomDataType[size];
+    }
+    boolean isEmpty()
+    {
+        return size==0;
+    }
+    int length()
+    {
+        return size;
+    }
+    void enqueue(String item,int priority)
+    {
+        CustomDataType temp = new CustomDataType(item,priority);
+        arr[end++] = temp;
+        size++;
+    }
+    CustomDataType dequeue()   //array is empty not checked
+    {
+        int highest_priority  = arr[0].priority;
+        int highest = 0;
+        for(int i = 0;i < size;i++)
+        {
+            if(highest_priority>arr[i].priority)
+            {
+                highest_priority = arr[i].priority;
+                highest = i;
+            }
+        }
+        CustomDataType temp = arr[highest];
+        for(int i = highest+1; i<size;i++)
+        {
+            arr[i-1] = arr[i];
+        }
+        size--;
+        return temp;
+    }
+}
+class CustomDataType{
+    String name;
+    int priority;
+    CustomDataType(String name, int priority)
+    {
+        this.name = name; 
+        this.priority = priority;
+    }
+}
+public class Question5b {
+    public static void main(String args[])
+    {
+        array_pQueue q1 = new array_pQueue();
+        //System.out.println("Is the queue empty: "+q1.isEmpty());
+        //System.out.println("Size: "+q1.size);
+        //q1.dequeue();
+        q1.enqueue("purple", 5);
+        //System.out.println("Size: "+q1.size);
+        q1.enqueue("black", 1);
+        //System.out.println("Size: "+q1.size);
+        q1.enqueue("orange", 3);
+        //System.out.println("Size: "+q1.size);
+        q1.enqueue("white", 0);
+        //System.out.println("Size: "+q1.size);
+        q1.enqueue("green", 1);
+        //System.out.println("Size: "+q1.size);
+        q1.enqueue( "yellow", 5 );
+        System.out.println("Size: "+q1.size);
+        System.out.println("Dequeue Operation:");
+        CustomDataType temp;
+        temp=q1.dequeue();
+        System.out.println(temp.name +"-->"+temp.priority);
+        //System.out.println("New Size: "+q1.size);
+        temp=q1.dequeue();
+        System.out.println(temp.name +"-->"+temp.priority);
+        //System.out.println("New Size: "+q1.size);
+        temp=q1.dequeue();
+        System.out.println(temp.name +"-->"+temp.priority);
+        //System.out.println("New Size: "+q1.size);
+        temp=q1.dequeue();
+        System.out.println(temp.name +"-->"+temp.priority);
+        //System.out.println("New Size: "+q1.size);
+        temp=q1.dequeue();
+        System.out.println(temp.name +"-->"+temp.priority);
+        //System.out.println("New Size: "+q1.size);
+        temp=q1.dequeue();
+        System.out.println(temp.name +"-->"+temp.priority);
+        //System.out.println("New Size: "+q1.size);
+    }
+}
